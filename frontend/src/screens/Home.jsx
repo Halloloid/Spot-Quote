@@ -19,7 +19,7 @@ const Home = () => {
   useEffect(()=>{
     const fetchCards = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/testmonials')
+        const res = await axios.get('https://backend-of-spot-quote.onrender.com/api/testmonials')
         setData(res.data)
       } catch (error) {
         console.error("Error fetching testimonials:", error);

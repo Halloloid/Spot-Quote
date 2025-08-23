@@ -11,7 +11,7 @@ const CreatePost = () => {
     const [rating,setRating] = useState("");
     const [description,setDescription] = useState("");
     const [location,setLocation] = useState("");
-    const [image,setImage] = useState("");
+    const [image,setImage] = useState(null);
 
     const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ const CreatePost = () => {
   formData.append("location", location);
   formData.append("image", image); // <-- file from input
 
-  await axios.post("http://localhost:5000/api/testmonials", formData, {
+  await axios.post("https://backend-of-spot-quote.onrender.com/api/testmonials", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 
@@ -149,7 +149,7 @@ const CreatePost = () => {
 
                     </div>
                     <div className='m-2'>
-                    <label className='text-[32px] font-custom '>Location</label><span className='ms-4'>*paste the Google map location link</span><br/>
+                    <label className='text-[32px] font-custom '>Location</label><span className='ms-4'>* Write Specific Location For Users</span><br/>
                     <input
                     value={location}
                     type='text'

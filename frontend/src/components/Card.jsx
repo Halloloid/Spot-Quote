@@ -29,8 +29,8 @@ const Card = ({ item, setData }) => {
             <h3 className='font-mono text-[24px] mt-4 ms-1.5 font-medium text-black mb-[24px]'>{item.location}</h3>
           </div>
           <div>
-            
-            <img src={`http://localhost:5000${item.image}`} className='w-full h-full object-cover rounded-br-3xl rounded-tr-3xl'/>
+
+            <img src={item.image} className='w-full h-full object-cover rounded-br-3xl rounded-tr-3xl'/>
           </div>
         </div>
       </div>

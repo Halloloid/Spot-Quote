@@ -1,4 +1,5 @@
 
+const cloudinary = require('../middleware/cloudinary')
 const TestMonial = require('../models/testmonailModel');
 
 const getAllTestMonials = async(req,res)=>{
@@ -15,6 +16,15 @@ const createTestMonial = async(req,res)=>{
     try {
         const {type,item,price,rating,description,location,image} = req.body;
         
+        let imageUrl = null;
+
+        if (req.file) {
+      // upload image to cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "spotquote", // optional folder name
+      });
+      imageUrl = result.secure_url; // Cloudinary gives a permanent link
+    }
         const newTestMonial = new TestMonial({
             type,
             item,
@@ -22,7 +32,7 @@ const createTestMonial = async(req,res)=>{
             rating,
             description,
             location,
-            image : req.file ? `/uploads/${req.file.filename}` : null
+            image : imageUrl
         });
         await newTestMonial.save();
         res.status(201).json(newTestMonial);

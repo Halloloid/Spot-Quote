@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+
+@font-face{
+    font-family: "Clash Display";
+    src: url("/ClashDisplay-Bold.ttf") format("truetype");
+}
+
+@theme{
+    --font-custom:"Clash Display";
+}
+
+body{
+    background-color: #B7C9A8;
+    color: #7D8A92;
+}
+
+@layer components {
+    main{
+        @apply w-full overflow-x-hidden;
+    }
+
+    #hero{
+        @apply relative min-h-screen w-full bg-[#B7C9A8];
+    }
+
+    #hero .title{
+        @apply font-custom text-[240px] leading-[240px] text-[#7D8A92];
+    }
+
+    #hero .quote{
+        @apply font-mono text-[36px] leading-[54px] text-[#7D8A92];
+    }
+
+    
+}

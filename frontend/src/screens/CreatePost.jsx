@@ -12,32 +12,19 @@ const CreatePost = () => {
     const [description,setDescription] = useState("");
     const [location,setLocation] = useState("");
     const [image,setImage] = useState(null);
+    const [loading,setLoading] = useState(false);
 
     const navigate = useNavigate();
 
    const handelSubmit = async (e) =>{
-    e.preventDefault()
+    e.preventDefault();
+    setLoading(true);
 
     if(!type.trim() || !item.trim() || !price.trim() || !rating.trim() || !description.trim() || !location.trim()){
         toast.error("Please fill all fields");
         return;
     }
 
-    // try {
-    //     await axios.post('http://localhost:5000/api/testmonials', {
-    //         type,
-    //         item,
-    //         price,
-    //         rating,
-    //         description,
-    //         location,
-    //         image
-    //     });
-    //     toast.success("Testimonial created successfully");
-    //     navigate('/home');
-    // } catch (error) {
-    //     console.error("Error creating testimonial:", error);
-    // } 
     try {
   const formData = new FormData();
   formData.append("type", type);
@@ -56,6 +43,8 @@ const CreatePost = () => {
   navigate("/home");
 } catch (error) {
   console.error("Error creating testimonial:", error);
+} finally{
+  setLoading(false);
 }
 
 
@@ -159,8 +148,8 @@ const CreatePost = () => {
                     </div>
 
                     <div className='grid grid-cols-2 gap-5 mt-10'>
-                        <button type='submit' className='btn btn-primary w-full h-[50px] text-[32px] font-custom rounded-2xl bg-[#7D8A92] hover:bg-[#B7C9A8] text-white'>
-                            Submit
+                        <button type='submit' disabled={loading} className='btn btn-primary w-full h-[50px] text-[32px] font-custom rounded-2xl bg-[#7D8A92] hover:bg-[#B7C9A8] text-white'>
+                            {loading ? "Submiting.." : "Submit"}
                         </button>
                         <button type='button' onClick={goback} className='btn btn-primary w-full text-[32px] font-custom rounded-2xl border hover:bg-[#B7C9A8] text-white'>
                             Cancel

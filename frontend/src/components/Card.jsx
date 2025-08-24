@@ -26,7 +26,8 @@ const Card = ({ item, setData }) => {
   ))}
 </div>
             <p className='line-clamp-1'>{item.description}</p>
-            <h3 className='font-mono text-[24px] mt-4 ms-1.5 font-medium text-black mb-[24px] line-clamp-1'>{item.location}</h3>
+            <h3 className='font-mono text-[24px] mt-4 ms-1.5 font-medium text-black line-clamp-1'>{item.location}</h3>
+            <p className='font-mono text-[20px] mt-2 ms-1.5 font-medium text-black mb-[24px] line-clamp-1'>Post by:{item.userName}</p>
           </div>
           <div>
 

@@ -34,9 +34,9 @@ const PostDetails = () => {
 
   return (
     <>
-    <button onClick={() => window.history.back()} className='bg-[#E1C16E] rounded-4xl px-4 py-3 m-5 font-semibold transition duration-300 hover:scale-130'>Go Back</button>
+    <button onClick={() => window.history.back()} className='bg-[#E1C16E] rounded-4xl px-4 py-3 ms-3 mt-3 font-semibold transition duration-300 hover:scale-130'>Go Back</button>
     <div className='w-full flex justify-center'>
-      <div className='w-[1150px] h-[600px]  bg-[#E8C4B8] rounded-4xl shadow-lg p-5'>
+      <div className='w-[1150px] h-[650px]  bg-[#E8C4B8] rounded-4xl shadow-lg p-5'>
         <div className='grid grid-cols-2 gap-5 h-[60%]'>
           <img src ={detail.image} className='w-full h-[340px] object-cover rounded-4xl'/>
           <div>
@@ -56,6 +56,7 @@ const PostDetails = () => {
   </div>
   <div className='mt-14'>
     <h1 className='text-[20px] font-semibold'>{detail.location}</h1>
+    <h1 className='text-[20px] font-semibold'>Posted by: {detail.userName}</h1>
   </div>
 </div>
       </div>

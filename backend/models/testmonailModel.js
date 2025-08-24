@@ -8,6 +8,8 @@ const testmonialSchema = new mongoose.Schema({
     description:{type:String},
     location:{type:String},
     image:{type:String},
+    userId:{type:String},
+    userName:{type:String}
 },{timestamps:true}
 )
 

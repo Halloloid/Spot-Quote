@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router';
 import toast, { LoaderIcon } from 'react-hot-toast';
 import axios from 'axios'
+import {useUser} from '@clerk/clerk-react';
 
 
 const CreatePost = () => {
@@ -15,6 +16,8 @@ const CreatePost = () => {
     const [loading,setLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    const {user} = useUser();
 
    const handelSubmit = async (e) =>{
     e.preventDefault();
@@ -34,6 +37,8 @@ const CreatePost = () => {
   formData.append("description", description);
   formData.append("location", location);
   formData.append("image", image); // <-- file from input
+  formData.append("userId",user.id);
+  formData.append("userName",user.firstName);
 
   await axios.post("https://backend-of-spot-quote.onrender.com/api/testmonials", formData, {
     headers: { "Content-Type": "multipart/form-data" },

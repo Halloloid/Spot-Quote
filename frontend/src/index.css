@@ -25,11 +25,11 @@ body{
     }
 
     #hero .title{
-        @apply font-custom text-[240px] leading-[240px] text-[#7D8A92];
+        @apply font-custom ms-5 md:ms-0 text-8xl md:text-[240px] md:leading-[240px] text-[#7D8A92];
     }
 
     #hero .quote{
-        @apply font-mono text-[36px] leading-[54px] text-[#7D8A92];
+        @apply font-mono ms-5 md:ms-0 text-[20px] md:text-[36px] md:leading-[54px] text-[#7D8A92];
     }
 
     

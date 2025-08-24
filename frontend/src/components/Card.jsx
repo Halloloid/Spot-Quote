@@ -4,15 +4,6 @@ import {Link} from 'react-router';
 const Card = ({ item, setData }) => {
   return (
     <Link to={`/post/${item._id}`} className='flex justify-center items-center'>
-      {/* <div className='w-[600px] h-[350px] bg-[#E8C4B8] '>
-        <div className='grid grid-cols-2'>
-          <div>
-            <p>sdnsjnd</p>
-          </div>
-          <div>
-          </div>
-        </div>
-      </div> */}
       <div className='w-[700px] h-[350px] bg-[#E8C4B8] rounded-3xl shadow-lg transition duration-300 hover:scale-105'>
         <div className='grid grid-cols-2 gap-5'>
           <div className=' ms-[53px] mt-[24px]'>

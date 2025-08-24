@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Card from '../components/Card';
 import { useNavigate } from 'react-router';
+import { Plus } from 'lucide-react';
 import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton, UserProfile } from '@clerk/clerk-react';
 
 const Home = () => {
@@ -31,11 +32,12 @@ const Home = () => {
   }, [])
   return (
     <>
-    <nav className="sticky top-0 bg-[#E1C16E] z-50 shadow-lg flex items-center justify-between px-[48px] py-4">
-      <h1 className="text-5xl font-extrabold p-[8px]">Spot Quote</h1>
+    <nav className="sticky top-0 bg-[#E1C16E] z-50 shadow-lg flex items-center justify-between md:px-[48px] py-2 md:py-4 px-[12px]">
+      <h1 className="text-2xl md:text-5xl font-extrabold p-[8px]">Spot Quote</h1>
       <div className='flex justify-between' >
-        <button className="bg-[#E8C4B8] text-black px-4 py-2 rounded shadow transition duration-300 hover:scale-120 me-8" onClick={handleCreatePost}>Create Post +</button>
-        <button className="bg-[#E8C4B8] text-black px-4 py-2 rounded shadow transition duration-300 hover:scale-120">
+        <button className="bg-[#E8C4B8] text-black px-4 py-2 rounded shadow transition duration-300 hover:scale-120 md:me-8 hidden md:inline " onClick={handleCreatePost}>Create Post +</button>
+        <button className="bg-[#E8C4B8] text-black px-4 py-2 rounded shadow transition duration-300 hover:scale-120 me-4 md:hidden" onClick={handleCreatePost}><Plus/></button>
+        <button className="bg-[#E8C4B8] text-black px-4 md:py-2 rounded shadow transition duration-300 hover:scale-120 text-[12px] md:text-[16px]  ">
           <SignedIn>
             <SignOutButton />
           </SignedIn>
@@ -43,10 +45,13 @@ const Home = () => {
             <SignInButton/>
           </SignedOut>
         </button>
-        <button className="transition duration-300 hover:scale-185 ms-8 scale-180">
+        <button className="transition duration-300 md:hover:scale-185 ms-3 md:ms-8 scale-100 md:scale-180">
           <SignedIn>
             <UserButton/>
           </SignedIn>
+          <SignedOut>
+            <UserButton/>
+          </SignedOut>
         </button>
       </div>
     </nav>

@@ -55,8 +55,8 @@ const Home = () => {
         </button>
       </div>
     </nav>
-    <div className='m-10'>
-      { loading? <div>Loading..</div> : <div className='grid grid-cols-2 gap-8'>
+    <div className='m-5 md:m-10'>
+      { loading? <div>Loading..</div> : <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
         {data.map(item => (
           <Card key={item._id} item={item} setData={setData}/>
         ))}

@@ -36,9 +36,9 @@ const PostDetails = () => {
     <>
     <button onClick={() => window.history.back()} className='bg-[#E1C16E] rounded-4xl px-4 py-3 m-5 font-semibold transition duration-300 hover:scale-130'>Go Back</button>
     <div className='w-full flex justify-center'>
-      <div className='w-[1000px] h-[600px]  bg-[#E8C4B8] rounded-4xl shadow-lg p-5'>
+      <div className='w-[1150px] h-[600px]  bg-[#E8C4B8] rounded-4xl shadow-lg p-5'>
         <div className='grid grid-cols-2 gap-5 h-[60%]'>
-          <img src ={detail.image} className=' h-full object-cover rounded-4xl'/>
+          <img src ={detail.image} className='w-full h-[340px] object-cover rounded-4xl'/>
           <div>
             <h1 className='font-bold text-6xl mt-5 text-black'>{detail.item}</h1>
             <h1 className='font-bold text-3xl mt-5'>{detail.type}</h1>
@@ -50,14 +50,14 @@ const PostDetails = () => {
 </div>
           </div>
         </div>
-        <div className='m-5 grid grid-rows-8'>
-          <div className='row-span-5'>
-            <p className='text-[24px]'>{detail.description}</p>
-          </div>
-          <div>
-            <h1 className='text-[20px] font-semibold'>{detail.location}</h1>
-          </div>
-        </div>
+        <div className='m-5 flex flex-col'>
+  <div className='mb-4 h-[100px]'>
+    <p className='w-full h-full break-words p-4 text-[24px]'>{detail.description}</p>
+  </div>
+  <div className='mt-14'>
+    <h1 className='text-[20px] font-semibold'>{detail.location}</h1>
+  </div>
+</div>
       </div>
     </div>
     </>

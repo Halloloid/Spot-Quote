@@ -68,6 +68,7 @@ const CreatePost = () => {
                     <input
                     value={type}
                     type='text'
+                    maxLength={18}
                     placeholder='Enter type'
                     className='border-[0.4px] rounded-sm p-1 text-[16px] w-full'
                     onChange={(e) => setType(e.target.value)}
@@ -78,6 +79,7 @@ const CreatePost = () => {
                     <label className='text-[32px] font-custom '>Item</label><br/>
                     <input
                     value={item}
+                    maxLength={9}
                     type='text'
                     placeholder='Enter item'
                     className='border-[0.4px] rounded-sm p-1 text-[16px] w-full'
@@ -90,6 +92,7 @@ const CreatePost = () => {
                     <label className='text-[32px] font-custom '>Price</label><br/>
                     <input
                     value={price}
+                    max={100000}
                     type='number'
                     placeholder='Enter price'
                     className='border-[0.4px] rounded-sm p-1 text-[16px] w-full'
@@ -132,6 +135,7 @@ const CreatePost = () => {
                     <label className='text-[32px] font-custom '>Description</label><br/>
                     <textarea
                     value={description}
+                    maxLength={180}
                     className='textarea textarea-bordered h-20 w-full border-[0.4px] rounded-sm  text-[16px] p-1'
                     onChange={(e) => setDescription(e.target.value)}
                     />
@@ -141,6 +145,7 @@ const CreatePost = () => {
                     <label className='text-[32px] font-custom '>Location</label><span className='ms-4'>* Write Specific Location For Users</span><br/>
                     <input
                     value={location}
+                    maxLength={50}
                     type='text'
                     className='border-[0.4px] rounded-sm p-1 text-[16px] w-full'
                     onChange={(e) => setLocation(e.target.value)}

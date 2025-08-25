@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import { useNavigate } from 'react-router';
 import { Plus } from 'lucide-react';
 import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton, UserProfile } from '@clerk/clerk-react';
+import toast from 'react-hot-toast';
 
 const Home = () => {
   const [data,setData] = useState([])
@@ -23,6 +24,7 @@ const Home = () => {
         const res = await axios.get('https://backend-of-spot-quote.onrender.com/api/testmonials')
         setData(res.data)
       } catch (error) {
+        toast.error("Error fetching testimonials Reload Again");
         console.error("Error fetching testimonials:", error);
       } finally{
         setLoading(false);

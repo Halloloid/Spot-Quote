@@ -4,7 +4,7 @@ const TestMonial = require('../models/testmonailModel');
 
 const getAllTestMonials = async(req,res)=>{
     try {
-      const allTestmonial = await TestMonial.find()
+      const allTestmonial = await TestMonial.find().sort({createdAt:-1});
       res.status(200).json(allTestmonial)
       console.log("This is All Testmonial")
     } catch (error) {

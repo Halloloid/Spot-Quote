@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router'
 import { Toaster } from 'react-hot-toast'
 import ArrowCursor from './Curosr.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
+import BubbleCursor from './Curosr.jsx'
+import SmoothFollower from './Curosr.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -16,7 +18,7 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <ArrowCursor/>
+      <SmoothFollower/>
       <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <App />
       </ClerkProvider>

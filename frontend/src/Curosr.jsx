@@ -1,79 +1,98 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-const ArrowCursor = () => {
-  const [lastY, setLastY] = useState(null);
-  const [direction, setDirection] = useState(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+import { useState, useEffect, useRef } from 'react';
+export default function SmoothFollower() {
+  const mousePosition = useRef({ x: 0, y: 0 });
+  const dotPosition = useRef({ x: 0, y: 0 });
+  const borderDotPosition = useRef({ x: 0, y: 0 });
+  const [renderPos, setRenderPos] = useState({
+    dot: { x: 0, y: 0 },
+    border: { x: 0, y: 0 },
+  });
+  const [isHovering, setIsHovering] = useState(false);
+  const DOT_SMOOTHNESS = 0.2;
+  const BORDER_DOT_SMOOTHNESS = 0.1;
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      if (lastY !== null) {
-        if (e.clientY < lastY) {
-          setDirection('up');
-        } else if (e.clientY > lastY) {
-          setDirection('down');
-        }
-      }
-      setLastY(e.clientY);
+      mousePosition.current = { x: e.clientX, y: e.clientY };
     };
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
     window.addEventListener('mousemove', handleMouseMove);
+    const interactiveElements = document.querySelectorAll(
+      'a, button, img, input, textarea, select'
+    );
+    interactiveElements.forEach((element) => {
+      element.addEventListener('mouseenter', handleMouseEnter);
+      element.addEventListener('mouseleave', handleMouseLeave);
+    });
+    const animate = () => {
+      const lerp = (start, end, factor) => {
+        return start + (end - start) * factor;
+      };
+      dotPosition.current.x = lerp(
+        dotPosition.current.x,
+        mousePosition.current.x,
+        DOT_SMOOTHNESS
+      );
+      dotPosition.current.y = lerp(
+        dotPosition.current.y,
+        mousePosition.current.y,
+        DOT_SMOOTHNESS
+      );
+      borderDotPosition.current.x = lerp(
+        borderDotPosition.current.x,
+        mousePosition.current.x,
+        BORDER_DOT_SMOOTHNESS
+      );
+      borderDotPosition.current.y = lerp(
+        borderDotPosition.current.y,
+        mousePosition.current.y,
+        BORDER_DOT_SMOOTHNESS
+      );
+      setRenderPos({
+        dot: { x: dotPosition.current.x, y: dotPosition.current.y },
+        border: {
+          x: borderDotPosition.current.x,
+          y: borderDotPosition.current.y,
+        },
+      });
+      requestAnimationFrame(animate);
+    };
+    const animationId = requestAnimationFrame(animate);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      interactiveElements.forEach((element) => {
+        element.removeEventListener('mouseenter', handleMouseEnter);
+        element.removeEventListener('mouseleave', handleMouseLeave);
+      });
+      cancelAnimationFrame(animationId);
     };
-  }, [lastY]);
-  const arrowVariants = {
-    initial: {
-      opacity: 0,
-      scale: 0.5,
-      rotate: direction === 'up' ? 0 : 180,
-    },
-    animate: {
-      opacity: 1,
-      scale: 1,
-      rotate: direction === 'up' ? 0 : 180,
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.5,
-    },
-  };
+  }, []);
+  if (typeof window === 'undefined') return null;
   return (
-    <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-50">
-      <AnimatePresence>
-        {direction && (
-          <motion.div
-            key={`${direction}-arrow`}
-            style={{
-              position: 'fixed',
-              top: mousePosition.y - 25,
-              left: mousePosition.x + 15,
-            }}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={arrowVariants}>
-            <div className="w-[50px] h-[50px] bg-[#E1C16E] dark:bg-[#E1C16E] rounded-full flex items-center justify-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                // className="text-white dark:text-white">
-                >
-                <line x1="12" y1="19" x2="12" y2="5"></line>
-                <polyline points="5 12 12 5 19 12"></polyline>
-              </svg>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="pointer-events-none fixed inset-0 z-50 hidden md:block">
+      <div
+        className="absolute rounded-full bg-white "
+        style={{
+          width: '8px',
+          height: '8px',
+          transform: 'translate(-50%, -50%)',
+          left: `${renderPos.dot.x}px`,
+          top: `${renderPos.dot.y}px`,
+        }}
+      />
+
+      <div
+        className="absolute rounded-full border border-white "
+        style={{
+          width: isHovering ? '44px' : '28px',
+          height: isHovering ? '44px' : '28px',
+          transform: 'translate(-50%, -50%)',
+          left: `${renderPos.border.x}px`,
+          top: `${renderPos.border.y}px`,
+          transition: 'width 0.3s, height 0.3s',
+        }}
+      />
     </div>
   );
-};
-export default ArrowCursor;
+}

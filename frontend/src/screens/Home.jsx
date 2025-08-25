@@ -37,20 +37,12 @@ const Home = () => {
       <div className='flex justify-between' >
         <button className="bg-[#E8C4B8] text-black px-4 py-2 rounded shadow transition duration-300 hover:scale-120 md:me-8 hidden md:inline " onClick={handleCreatePost}>Create Post +</button>
         <button className="bg-[#E8C4B8] text-black px-4 py-2 rounded shadow transition duration-300 hover:scale-120 me-4 md:hidden" onClick={handleCreatePost}><Plus/></button>
-        <button className="bg-[#E8C4B8] text-black px-4 md:py-2 rounded shadow transition duration-300 hover:scale-120 text-[12px] md:text-[16px]  ">
+        <button className="bg-[#E8C4B8] text-black px-4 md:py-2 rounded shadow transition duration-300 hover:scale-120 text-[14px] md:text-[16px]  ">
           <SignedIn>
             <SignOutButton />
           </SignedIn>
           <SignedOut>
             <SignInButton/>
-          </SignedOut>
-        </button>
-        <button className="transition duration-300 md:hover:scale-185 ms-3 md:ms-8 scale-100 md:scale-180">
-          <SignedIn>
-            <UserButton/>
-          </SignedIn>
-          <SignedOut>
-            <UserButton/>
           </SignedOut>
         </button>
       </div>

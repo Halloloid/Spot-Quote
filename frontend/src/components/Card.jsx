@@ -16,13 +16,13 @@ const Card = ({ item, setData }) => {
     <img key={i} src="/images/star (1).png" alt="star" className=' w-[16px] h-[16px] m-0.5'/>
   ))}
 </div>
-            <p className='line-clamp-1 hidden md:inline'>{item.description}</p>
+            <p className='line-clamp-1 hidden md:none'>{item.description}</p>
             <h3 className='font-mono text-[19px] md:text-[24px] mt-2 md:mt-4 ms-1.5 font-medium text-black line-clamp-1'>{item.location}</h3>
             <p className='font-mono text-[12px] md:text-[20px] md:mt-2 mt-1  ms-1.5 font-medium text-black mb-[24px] line-clamp-1'>Post by:{item.userName}</p>
           </div>
           <div>
 
-            <img src={item.image} className='w-full h-[200px] md:h-[360px] object-cover rounded-br-3xl rounded-tr-3xl'/>
+            <img src={item.image} loading='lazy' className='w-full h-[200px] md:h-[360px] object-cover rounded-br-3xl rounded-tr-3xl'/>
           </div>
         </div>
       </div>

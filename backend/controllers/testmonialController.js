@@ -12,6 +12,17 @@ const getAllTestMonials = async(req,res)=>{
     }
 }
 
+const getuserTestMonials = async(req,res) =>{
+    try {
+        const {userId} = req.params;
+        const userTetmonials = await TestMonial.find({userId});
+        res.status(200).json(userTetmonials);
+        console.log("This is user Testmonials")
+    } catch (error) {
+        res.status(500).json({message:"Error Fetching User Testmonials"})
+    }
+}
+
 const createTestMonial = async(req,res)=>{
     try {
         const {type,item,price,rating,description,location,image,userId,userName} = req.body;
@@ -61,5 +72,6 @@ const getTestMonialById = async (req, res) => {
 module.exports={
     getAllTestMonials,
     createTestMonial,
-    getTestMonialById
+    getTestMonialById,
+    getuserTestMonials
 }

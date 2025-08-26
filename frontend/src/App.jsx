@@ -5,6 +5,7 @@ import Home from './screens/Home'
 import CreatePost from './screens/CreatePost'
 import PostDetails from './screens/PostDetails'
 import { SignIn, SignOutButton, useUser,SignUp } from '@clerk/clerk-react'
+import UserProfile from './screens/UserProfile'
 
 
 
@@ -33,9 +34,11 @@ const App = () => {
           </ProtectedRoute>
         }/>
         <Route path='/post/:id' element={<PostDetails/>}/>
-        {/* <Route path="/sign-in/*" element={<div className='flex w-full h-full justify-center mt-28'><SignIn/></div>} /> */}
         <Route path="/sign-in/*" element={<div className='flex w-full h-full justify-center mt-28'><SignIn routing="path" path="/sign-in"  /></div>} />
         <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
+        <Route path='/userProfile/:userId' element={<ProtectedRoute>
+          <UserProfile/>
+        </ProtectedRoute>} />
       </Routes>
     </div>
   )

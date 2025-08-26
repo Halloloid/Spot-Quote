@@ -3,21 +3,25 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Card from '../components/Card';
-import { useNavigate } from 'react-router';
-import { Plus } from 'lucide-react';
-import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton, UserProfile } from '@clerk/clerk-react';
+import { Link, useNavigate } from 'react-router';
+import { ContactIcon, ContactRound, Plus } from 'lucide-react';
+import { SignedIn, SignedOut, SignInButton, SignOutButton} from '@clerk/clerk-react';
 import toast from 'react-hot-toast';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import {useUser} from '@clerk/clerk-react';
 
 const Home = () => {
   const [data,setData] = useState([])
   const [loading,setLoading] = useState(true)
 
   const navigate = useNavigate();
+  const {isLoaded, isSignedIn, user} = useUser();
 
   const handleCreatePost = async () => {
     navigate('/create-post');
   }
+
+
 
   useEffect(()=>{
     const fetchCards = async () => {
@@ -33,6 +37,8 @@ const Home = () => {
     }
      fetchCards()
   }, [])
+
+
   return (
     <>
     <nav className="sticky top-0 bg-[#E1C16E] z-50 shadow-lg flex items-center justify-between md:px-[48px] py-2 md:py-4 px-[12px]">
@@ -40,14 +46,14 @@ const Home = () => {
       <div className='flex justify-between' >
         <button className="bg-[#E8C4B8] text-black px-4 py-2 rounded shadow transition duration-300 hover:scale-120 md:me-8 hidden md:inline " onClick={handleCreatePost}>Create Post +</button>
         <button className="bg-[#E8C4B8] text-black px-4 py-2 rounded shadow transition duration-300 hover:scale-120 me-4 md:hidden" onClick={handleCreatePost}><Plus/></button>
+        <SignedOut>
         <button className="bg-[#E8C4B8] text-black px-4 md:py-2 rounded shadow transition duration-300 hover:scale-120 text-[14px] md:text-[16px]  ">
-          <SignedIn>
-            <SignOutButton />
-          </SignedIn>
-          <SignedOut>
             <SignInButton/>
-          </SignedOut>
         </button>
+        </SignedOut>
+        { isSignedIn && isLoaded && <Link to={`/userProfile/${user.id}`}>
+          <img src="/images/Profile.png" className='size-10' />
+        </Link>}
       </div>
     </nav>
     <div className='m-5 md:m-10'>

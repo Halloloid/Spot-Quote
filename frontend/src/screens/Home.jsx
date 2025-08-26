@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import { Plus } from 'lucide-react';
 import { SignedIn, SignedOut, SignInButton, SignOutButton, UserButton, UserProfile } from '@clerk/clerk-react';
 import toast from 'react-hot-toast';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const Home = () => {
   const [data,setData] = useState([])
@@ -50,7 +51,13 @@ const Home = () => {
       </div>
     </nav>
     <div className='m-5 md:m-10'>
-      { loading? <div>Loading..</div> : <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+      { loading? <div className="flex items-center justify-center mt-60 md:mt-80">
+  <div className="relative">
+    <div className="w-16 h-16 rounded-full border-8 border-t-transparent border-[#dcb32b] animate-spin"></div>
+    <div className="absolute inset-0 w-10 h-10 m-auto rounded-full border-6 border-t-transparent border-[#F4C2C2] animate-spin [animation-direction:reverse]"></div>
+  </div>
+</div>
+ : <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
         {data.map(item => (
           <Card key={item._id} item={item} setData={setData}/>
         ))}

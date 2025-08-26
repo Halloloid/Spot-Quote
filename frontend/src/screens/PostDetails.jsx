@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const PostDetails = () => {
 
@@ -27,7 +28,12 @@ const PostDetails = () => {
   if(loading){
     return (
       <div>
-        <h1>Loading</h1>
+        <div className="flex items-center justify-center mt-60 md:mt-80">
+  <div className="relative">
+    <div className="w-16 h-16 rounded-full border-8 border-t-transparent border-[#dcb32b] animate-spin"></div>
+    <div className="absolute inset-0 w-10 h-10 m-auto rounded-full border-6 border-t-transparent border-[#F4C2C2] animate-spin [animation-direction:reverse]"></div>
+  </div>
+</div>
       </div>
     )
   }

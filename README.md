@@ -35,3 +35,7 @@ I built this project to practice **full-stack development**, focusing on authent
 
 ✅ Core features (auth, profiles, post creation, image upload) implemented  
 🚧 Upcoming – Enhanced profile design & ability to explore other users' profiles
+
+
+## Link of The Site
+[See The Site](https://spot-quote.vercel.app/)
